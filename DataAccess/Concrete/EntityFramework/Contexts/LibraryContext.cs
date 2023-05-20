@@ -30,6 +30,7 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
         public DbSet<MovieActor> MovieActors { get; set; }
         public DbSet<MenuContent> MenuContents { get; set; }
         public DbSet<MenuObject> MenuObjects { get; set; }
+        public DbSet<Rating> Ratings { get; set; }
 
         #endregion
 

@@ -34,6 +34,7 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<EfMovieActorRepository>().As<IMovieActorRepository>().InstancePerLifetimeScope();
             builder.RegisterType<EfMenuContentRepository>().As<IMenuContentRepository>().InstancePerLifetimeScope();
             builder.RegisterType<EfMenuObjectRepository>().As<IMenuObjectRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<EfRatingRepository>().As<IRatingRepository>().InstancePerLifetimeScope();
 
             #endregion
 
@@ -58,6 +59,7 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<MovieActorManager>().As<IMovieActorService>().InstancePerLifetimeScope();
             builder.RegisterType<MenuContentManager>().As<IMenuContentService>().InstancePerLifetimeScope();
             builder.RegisterType<MenuObjectManager>().As<IMenuObjectService>().InstancePerLifetimeScope();
+            builder.RegisterType<RatingManager>().As<IRatingService>().InstancePerLifetimeScope();
 
             #endregion
 

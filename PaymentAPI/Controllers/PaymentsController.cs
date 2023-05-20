@@ -17,10 +17,13 @@ namespace PaymentAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Get()
+        public IActionResult Get(PaymentModel model)
         {
-            _paymentService.GenerateHtml(new PaymentModel());
-            return Ok();
+            var result = _paymentService.DoPayment(model);
+            return new FileStreamResult(result, "application/pdf")
+            {
+                FileDownloadName = "Invoice"
+            };
         }
     }
 }
