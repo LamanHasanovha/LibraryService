@@ -11,5 +11,6 @@ namespace Business.Abstract
         Task AccountExists(AccountRegisterModel model);
         Task<Account> UpdateWithPassword(AccountUpdateModel model);
         Task<Account> UpdateInfo(AccountUpdateInfoRequestModel model);
+        Task<bool> CheckPass(string username, string password);
     }
 }

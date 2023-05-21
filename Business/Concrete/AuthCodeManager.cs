@@ -25,6 +25,7 @@ namespace Business.Concrete
                 throw new BusinessException("Auth code was expired");
 
             authCode.IsUsed = true;
+            authCode.CreatorAccountId = accountId;
 
             await Repository.UpdateAsync(authCode);
 

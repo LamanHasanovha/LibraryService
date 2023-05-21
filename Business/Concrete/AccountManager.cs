@@ -118,5 +118,12 @@ namespace Business.Concrete
 
             return acc;
         }
+
+        public async Task<bool> CheckPass(string username, string password)
+        {
+            var account = await Repository.GetAsync(a => a.Username == username);
+
+            return HashingHelper.VerifyPasswordHash(password, account.PasswordHash, account.PasswordSalt);
+        }
     }
 }

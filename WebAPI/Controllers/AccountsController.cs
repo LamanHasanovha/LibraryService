@@ -37,5 +37,11 @@ namespace WebAPI.Controllers
         {
             return Ok(await Service.UpdateInfo(model));
         }
+
+        [HttpGet("checkpass")]
+        public async Task<IActionResult> CheckPass(string username, string password)
+        {
+            return Ok(await Service.CheckPass(username, password));
+        }
     }
 }
