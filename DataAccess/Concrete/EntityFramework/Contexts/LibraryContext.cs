@@ -32,6 +32,7 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
         public DbSet<MenuObject> MenuObjects { get; set; }
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<AuthCode> AuthCodes { get; set; }
 
         #endregion
 

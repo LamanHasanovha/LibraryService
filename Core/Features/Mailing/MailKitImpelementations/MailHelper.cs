@@ -10,6 +10,16 @@ namespace Core.Features.Mailing.MailKitImpelementations
         int port;
         bool useSsl;
 
+        public MailHelper(string senderName, string fromMail, string mailPassword, string host, int port, bool useSsl)
+        {
+            this.senderName = senderName;
+            this.fromMail = fromMail;
+            this.mailPassword = mailPassword;
+            this.host = host;
+            this.port = port;
+            this.useSsl = useSsl;
+        }
+
         public async Task<bool> PublishAsync(SendMailIntegrationEvent @event)
         {
             var email = new MimeMessage();
