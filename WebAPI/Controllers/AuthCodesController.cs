@@ -20,5 +20,11 @@ namespace WebAPI.Controllers
             await Service.SendAuthCode(accountId);
             return Ok();
         }
+
+        [HttpPost("checkauthcode")]
+        public async Task<IActionResult> CheckAuthCode(int accountId, string code)
+        {
+            return Ok(await Service.CheckAuthCode(accountId, code));
+        }
     }
 }
