@@ -9,7 +9,7 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CartsController : BaseController<ICartService, Cart, ChartAddRequestModel, ChartUpdateRequestModel, ChartDeleteRequestModel>
+    public class CartsController : BaseController<ICartService, Cart, CartAddRequestModel, CartUpdateRequestModel, CartDeleteRequestModel>
     {
         public CartsController(ICartService service) : base(service)
         {

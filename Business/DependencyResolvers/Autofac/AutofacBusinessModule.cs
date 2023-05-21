@@ -35,6 +35,7 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<EfMenuContentRepository>().As<IMenuContentRepository>().InstancePerLifetimeScope();
             builder.RegisterType<EfMenuObjectRepository>().As<IMenuObjectRepository>().InstancePerLifetimeScope();
             builder.RegisterType<EfRatingRepository>().As<IRatingRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<EfReviewRepository>().As<IReviewRepository>().InstancePerLifetimeScope();
 
             #endregion
 
@@ -60,6 +61,7 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<MenuContentManager>().As<IMenuContentService>().InstancePerLifetimeScope();
             builder.RegisterType<MenuObjectManager>().As<IMenuObjectService>().InstancePerLifetimeScope();
             builder.RegisterType<RatingManager>().As<IRatingService>().InstancePerLifetimeScope();
+            builder.RegisterType<ReviewManager>().As<IReviewService>().InstancePerLifetimeScope();
 
             #endregion
 

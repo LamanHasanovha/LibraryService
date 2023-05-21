@@ -2,11 +2,11 @@
 
 namespace Entities.Models.RequestModels
 {
-    public class ChartDeleteRequestModel : IDeleteModel
+    public class CartDeleteRequestModel : IDeleteModel
     {
-        public ChartDeleteRequestModel() { }
+        public CartDeleteRequestModel() { }
 
-        public ChartDeleteRequestModel(int id)
+        public CartDeleteRequestModel(int id)
         {
             Id = id;
         }

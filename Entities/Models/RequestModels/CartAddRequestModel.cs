@@ -3,11 +3,11 @@ using Entities.Constants;
 
 namespace Entities.Models.RequestModels
 {
-    public class ChartAddRequestModel : IAddModel
+    public class CartAddRequestModel : IAddModel
     {
-        public ChartAddRequestModel() { }
+        public CartAddRequestModel() { }
 
-        public ChartAddRequestModel(int accountId, int recordId, ProductTypes type)
+        public CartAddRequestModel(int accountId, int recordId, ProductTypes type)
         {
             AccountId = accountId;
             RecordId = recordId;
