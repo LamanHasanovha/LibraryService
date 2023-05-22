@@ -23,6 +23,11 @@ namespace Business.Concrete
             return await Repository.GetAllAsync(m => m.DirectorId == directorId);
         }
 
+        public async Task<string> GetMaxMinValue()
+        {
+            return await Repository.GetMaxMinValue();
+        }
+
         public async Task<MovieResponseModel> GetMovieById(int id)
         {
             var data = await Repository.GetMovies(m=>m.Id == id);

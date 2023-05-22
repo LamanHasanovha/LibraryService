@@ -9,6 +9,7 @@ namespace Business.Abstract
         Task<BookResponseModel> GetBookById(int id);
         Task<List<BookResponseModel>> GetBooks();
         Task<List<Book>> GetByAuthor(int id);
+        Task<string> GetMaxMinValue();
         Task<BookResponseModel> GetRandomBook();
     }
 }

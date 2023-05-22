@@ -8,6 +8,7 @@ namespace Business.Abstract
     {
         Task<List<Movie>> GetByActor(int actorId);
         Task<List<Movie>> GetByDirector(int directorId);
+        Task<string> GetMaxMinValue();
         Task<MovieResponseModel> GetMovieById(int id);
         Task<List<MovieResponseModel>> GetMovies();
         Task<MovieResponseModel> GetRandomMovie();

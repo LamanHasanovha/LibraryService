@@ -26,6 +26,14 @@ namespace DataAccess.Concrete.EntityFramework.Repos
             return data?.Movies?.ToList();
         }
 
+        public async Task<string> GetMaxMinValue()
+        {
+            var maxValue = await Context.Movies.MaxAsync(m => m.Price);
+            var minValue = await Context.Movies.MinAsync(m => m.Price);
+
+            return maxValue.ToString() + "-" + minValue.ToString();
+        }
+
         public async Task<List<MovieResponseModel>> GetMovies(Expression<Func<Movie, bool>> predicate = null)
         {
             var result = from m in predicate == null

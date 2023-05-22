@@ -29,6 +29,11 @@ namespace Business.Concrete
             return await Repository.GetAllAsync(b=>b.AuthorId == id);
         }
 
+        public async Task<string> GetMaxMinValue()
+        {
+            return await Repository.GetMaxMinValue();
+        }
+
         public async Task<BookResponseModel> GetRandomBook()
         {
             return await Repository.GetRandomBook();

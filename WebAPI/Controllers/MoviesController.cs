@@ -44,5 +44,11 @@ namespace WebAPI.Controllers
         {
             return Ok(await Service.GetMovieById(id));
         }
+
+        [HttpGet("getmaxminvalue")]
+        public async Task<IActionResult> GetMaxMinValue()
+        {
+            return Ok(await Service.GetMaxMinValue());
+        }
     }
 }

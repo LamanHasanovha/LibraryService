@@ -38,6 +38,14 @@ namespace DataAccess.Concrete.EntityFramework.Repos
             return data;
         }
 
+        public async Task<string> GetMaxMinValue()
+        {
+            var maxValue = await Context.Books.MaxAsync(m => m.Price);
+            var minValue = await Context.Books.MinAsync(m => m.Price);
+
+            return maxValue.ToString() + "-" + minValue.ToString();
+        }
+
         public async Task<BookResponseModel> GetRandomBook()
         {
             var rand = new Random();

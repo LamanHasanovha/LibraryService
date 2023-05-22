@@ -8,6 +8,7 @@ namespace DataAccess.Abstract
     public interface IBookRepository : IExtendedRepository<Book>
     {
         Task<List<BookResponseModel>> GetBooks(Expression<Func<Book, bool>> predicate = null);
+        Task<string> GetMaxMinValue();
         Task<BookResponseModel> GetRandomBook();
     }
 }
