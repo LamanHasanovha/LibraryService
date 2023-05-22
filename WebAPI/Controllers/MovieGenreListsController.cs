@@ -15,7 +15,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("updatebymovie")]
-        public async Task<IActionResult> UpdateByMovie(List<MovieGenreList> list)
+        public async Task<IActionResult> UpdateByMovie(List<MovieGenreListUpdateRequestModel> list)
         {
             return Ok(await Service.UpdateByMovie(list));
         }

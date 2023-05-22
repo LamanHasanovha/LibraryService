@@ -2,6 +2,7 @@
 using Core.Business.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Models.RequestModels;
 
 namespace Business.Concrete
 {
@@ -29,7 +30,7 @@ namespace Business.Concrete
             return await Repository.GetAllAsync(l=>l.MovieId == id);
         }
 
-        public async Task<List<MovieGenreList>> UpdateByMovie(List<MovieGenreList> list)
+        public async Task<List<MovieGenreList>> UpdateByMovie(List<MovieGenreListUpdateRequestModel> list)
         {
 
             if (list.Count == 0)
@@ -39,7 +40,7 @@ namespace Business.Concrete
             var result = new List<MovieGenreList>();
             foreach (var item in list)
             {
-                result.Add(await Repository.AddAsync(item));
+                result.Add(await Repository.AddAsync(base.Map<MovieGenreListUpdateRequestModel, MovieGenreList>(item)));
             }
 
             return result;

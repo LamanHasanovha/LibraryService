@@ -1,5 +1,6 @@
 ﻿using Core.Business.Abstract;
 using Entities.Concrete;
+using Entities.Models.RequestModels;
 
 namespace Business.Abstract
 {
@@ -7,6 +8,6 @@ namespace Business.Abstract
     {
         Task<int> DeleteByMovie(int id);
         Task<List<MovieGenreList>> GetByMovie(int id);
-        Task<List<MovieGenreList>> UpdateByMovie(List<MovieGenreList> list);
+        Task<List<MovieGenreList>> UpdateByMovie(List<MovieGenreListUpdateRequestModel> list);
     }
 }
