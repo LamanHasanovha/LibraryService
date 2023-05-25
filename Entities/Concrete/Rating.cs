@@ -19,7 +19,7 @@ namespace Entities.Concrete
         public int Id { get; set; }
         public int AccountId { get; set; }
         public int RecordId { get; set; }
-        public int Value { get; set; }
+        public double Value { get; set; }
         public RatingTypes Type { get; set; }
 
         public Account Account { get; set; }

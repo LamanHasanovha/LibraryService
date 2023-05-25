@@ -38,6 +38,11 @@ namespace DataAccess.Concrete.EntityFramework.Repos
             return data;
         }
 
+        public async Task<List<Book>> GetByIds(List<int> result)
+        {
+            return await Context.Books.Where(b => result.Contains(b.Id)).ToListAsync();
+        }
+
         public async Task<string> GetMaxMinValue()
         {
             var maxValue = await Context.Books.MaxAsync(m => m.Price);
@@ -68,6 +73,15 @@ namespace DataAccess.Concrete.EntityFramework.Repos
             var data = await result.FirstOrDefaultAsync();
 
             return data;
+        }
+
+        public async Task<List<Book>> GetSameGenre(int bookId, int count)
+        {
+            var genres = (await Context.BookGenreLists.Where(l => l.BookId == bookId).ToListAsync()).Select(g => g.BookGenreId);
+
+            var books = (await Context.BookGenreLists.Where(l => genres.Contains(l.BookGenreId)).ToListAsync()).Select(g => g.BookId);
+
+            return await Context.Books.Where(b => books.Contains(b.Id)).Take(count).ToListAsync();
         }
     }
 }

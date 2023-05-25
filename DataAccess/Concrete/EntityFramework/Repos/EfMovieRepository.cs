@@ -26,6 +26,11 @@ namespace DataAccess.Concrete.EntityFramework.Repos
             return data?.Movies?.ToList();
         }
 
+        public async Task<List<Movie>> GetByIds(List<int> result)
+        {
+            return await Context.Movies.Where(m=>result.Contains(m.Id)).ToListAsync();
+        }
+
         public async Task<string> GetMaxMinValue()
         {
             var maxValue = await Context.Movies.MaxAsync(m => m.Price);
@@ -82,6 +87,15 @@ namespace DataAccess.Concrete.EntityFramework.Repos
             var data = await result.FirstOrDefaultAsync();
 
             return data;
+        }
+
+        public async Task<List<Movie>> GetSameGenre(int movieId, int count)
+        {
+            var genres = (await Context.MovieGenreLists.Where(l => l.MovieId == movieId).ToListAsync()).Select(g => g.MovieGenreId);
+
+            var movies = (await Context.MovieGenreLists.Where(l => genres.Contains(l.MovieGenreId)).ToListAsync()).Select(g => g.MovieId);
+
+            return await Context.Movies.Where(m=>movies.Contains(m.Id)).Take(count).ToListAsync();
         }
     }
 }

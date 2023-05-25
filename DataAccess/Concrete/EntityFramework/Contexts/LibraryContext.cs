@@ -33,6 +33,10 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<AuthCode> AuthCodes { get; set; }
+        public DbSet<Activity> Activities { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
+        public DbSet<ItemBasedFiltering> ItemBasedFiltering { get; set; }
+        public DbSet<UserBasedFiltering> UserBasedFiltering { get; set; }
 
         #endregion
 

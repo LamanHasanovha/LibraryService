@@ -2,6 +2,7 @@
 using Autofac.Extras.DynamicProxy;
 using Business.Abstract;
 using Business.Concrete;
+using Business.Recommedation.Services;
 using Castle.DynamicProxy;
 using Core.Features.Interceptors;
 using DataAccess.Abstract;
@@ -37,6 +38,10 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<EfRatingRepository>().As<IRatingRepository>().InstancePerLifetimeScope();
             builder.RegisterType<EfReviewRepository>().As<IReviewRepository>().InstancePerLifetimeScope();
             builder.RegisterType<EfAuthCodeRepository>().As<IAuthCodeRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<EfActivityRepository>().As<IActivityRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<EfPurchaseRepository>().As<IPurchaseRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<EfItemBasedFilteringRepository>().As<IItemBasedFilteringRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<EfUserBasedFilteringRepository>().As<IUserBasedFilteringRepository>().InstancePerLifetimeScope();
 
             #endregion
 
@@ -64,6 +69,10 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<RatingManager>().As<IRatingService>().InstancePerLifetimeScope();
             builder.RegisterType<ReviewManager>().As<IReviewService>().InstancePerLifetimeScope();
             builder.RegisterType<AuthCodeManager>().As<IAuthCodeService>().InstancePerLifetimeScope();
+            builder.RegisterType<ActivityManager>().As<IActivityService>().InstancePerLifetimeScope();
+            builder.RegisterType<PurchaseManager>().As<IPurchaseService>().InstancePerLifetimeScope();
+            builder.RegisterType<ItemBasedFilteringManager>().As<IItemBasedFilteringService>().InstancePerLifetimeScope();
+            builder.RegisterType<UserBasedFilteringManager>().As<IUserBasedFilteringService>().InstancePerLifetimeScope();
 
             #endregion
 
