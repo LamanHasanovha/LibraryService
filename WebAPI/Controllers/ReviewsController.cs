@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Core.WebAPI;
 using Entities.Concrete;
+using Entities.Constants;
 using Entities.Models.RequestModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,12 @@ namespace WebAPI.Controllers
     {
         public ReviewsController(IReviewService service) : base(service)
         {
+        }
+
+        [HttpGet("getbytype")]
+        public async Task<IActionResult> GetByType(int recordId,  int type)
+        {
+            return Ok(await Service.GetByType(recordId, (RatingTypes)type));
         }
     }
 }

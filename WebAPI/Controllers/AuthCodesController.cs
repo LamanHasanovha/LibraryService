@@ -15,9 +15,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("sendauthcode")]
-        public async Task<IActionResult> SendAuthCode(int accountId)
+        public async Task<IActionResult> SendAuthCode(int accountId, string email)
         {
-            await Service.SendAuthCode(accountId);
+            await Service.SendAuthCode(accountId, email);
             return Ok();
         }
 

@@ -32,7 +32,7 @@ namespace Business.Concrete
             return true;
         }
 
-        public async Task SendAuthCode(int accountId)
+        public async Task SendAuthCode(int accountId, string email)
         {
             var code = await GenerateCode();
 
@@ -45,7 +45,7 @@ namespace Business.Concrete
                 IsHtmlBody = false,
                 Body = code,
                 Subject = "Your Auth Code [No-reply]",
-                ToMails = new List<string>(new string[] { account.Email })
+                ToMails = new List<string>(new string[] { email })
             });
 
             if (!result)

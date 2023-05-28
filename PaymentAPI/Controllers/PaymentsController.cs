@@ -16,7 +16,7 @@ namespace PaymentAPI.Controllers
             _paymentService = new PaymentService();
         }
 
-        [HttpPost]
+        [HttpPost("pay")]
         public IActionResult Get(PaymentModel model)
         {
             var result = _paymentService.DoPayment(model);

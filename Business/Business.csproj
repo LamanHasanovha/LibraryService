@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Recommedation\Models\" />
     <Folder Include="ValidationRules\FluentValidation\" />
   </ItemGroup>
 

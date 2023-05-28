@@ -1,5 +1,4 @@
-﻿using Business.Recommedation.Models;
-using DataAccess.Abstract;
+﻿using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.Constants;
 
@@ -441,7 +440,6 @@ namespace Business.Recommedation.Services
 
         public async Task TrainUsers()
         {
-            var avgRatings = new AccountAverageRating();
             var userFiltering = new List<UserBasedFiltering>();
             var accounts = await _accountRepository.GetAllAsync(a => a.Status == true);
 

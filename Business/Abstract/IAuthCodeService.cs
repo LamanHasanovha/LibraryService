@@ -5,7 +5,7 @@ namespace Business.Abstract
 {
     public interface IAuthCodeService : IExtendedServiceRepository<AuthCode>
     {
-        Task SendAuthCode(int accountId);
+        Task SendAuthCode(int accountId, string email);
         Task<bool> CheckAuthCode(int accountId, string code);
     }
 }
