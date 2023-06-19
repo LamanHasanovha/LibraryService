@@ -11,6 +11,7 @@ namespace Business.Abstract
         Task<string> GetMaxMinValue();
         Task<MovieResponseModel> GetMovieById(int id);
         Task<List<MovieResponseModel>> GetMovies();
+        Task<List<MovieResponseModel>> GetPopularMovies();
         Task<MovieResponseModel> GetRandomMovie();
     }
 }

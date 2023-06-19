@@ -5,5 +5,6 @@ namespace DataAccess.Abstract
 {
     public interface IAuthorRepository : IExtendedRepository<Author>
     {
+        Task<Author> GetRandomAuthor();
     }
 }

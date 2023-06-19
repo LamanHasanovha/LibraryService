@@ -19,7 +19,7 @@ namespace Business.Concrete
 
         public async Task SaveRating(Rating rating)
         {
-            var result = await Repository.GetAsync(r => r.AccountId == rating.AccountId & r.Type == rating.Type);
+            var result = await Repository.GetAsync(r => r.AccountId == rating.AccountId & r.Type == rating.Type & r.RecordId == rating.RecordId);
 
             if (result is null)
             {

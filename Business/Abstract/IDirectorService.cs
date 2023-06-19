@@ -5,5 +5,6 @@ namespace Business.Abstract
 {
     public interface IDirectorService : IExtendedServiceRepository<Director>
     {
+        Task<Director> GetRandomDirector();
     }
 }

@@ -15,7 +15,7 @@ namespace DataAccess.Concrete.EntityFramework.Repos
         {
         }
 
-        public async Task<ReviewResponseModel> GetByType(int recordId, RatingTypes type)
+        public async Task<List<ReviewResponseModel>> GetByType(int recordId, RatingTypes type)
         {
             var result = from r in Context.Reviews.Where(r => r.RecordId == recordId && r.Type == type).Include(r => r.Account)
                          select new ReviewResponseModel
@@ -28,7 +28,7 @@ namespace DataAccess.Concrete.EntityFramework.Repos
                              Username = r.Account.Username
                          };
 
-            return await result.FirstOrDefaultAsync();
+            return await result.ToListAsync();
         }
     }
 }

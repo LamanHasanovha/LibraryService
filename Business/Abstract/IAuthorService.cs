@@ -5,5 +5,6 @@ namespace Business.Abstract
 {
     public interface IAuthorService : IExtendedServiceRepository<Author>
     {
+        Task<Author> GetRandomAuthor();
     }
 }

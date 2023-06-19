@@ -13,5 +13,11 @@ namespace WebAPI.Controllers
         public AuthorsController(IAuthorService service) : base(service)
         {
         }
+
+        [HttpGet("getrandomauthor")]
+        public async Task<IActionResult> GetRandomAuthor()
+        {
+            return Ok(await Service.GetRandomAuthor());
+        }
     }
 }

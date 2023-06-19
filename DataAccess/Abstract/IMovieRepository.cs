@@ -11,6 +11,7 @@ namespace DataAccess.Abstract
         Task<List<Movie>> GetByIds(List<int> result);
         Task<string> GetMaxMinValue();
         Task<List<MovieResponseModel>> GetMovies(Expression<Func<Movie, bool>> predicate = null);
+        Task<List<MovieResponseModel>> GetPopularMovies();
         Task<MovieResponseModel> GetRandomMovie();
         Task<List<Movie>> GetSameGenre(int movieId, int count);
     }

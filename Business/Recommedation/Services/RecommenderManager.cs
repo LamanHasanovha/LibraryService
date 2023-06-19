@@ -286,7 +286,8 @@ namespace Business.Recommedation.Services
                             continue;
                         var similarity = bookItems.FirstOrDefault(b => b.ItemOneId == Math.Min(books[j].Id, books[k].Id) & b.ItemTwoId == Math.Max(books[j].Id, books[k].Id)) ?? new ItemBasedFiltering { Similarity = 0 };
                         denominator += similarity.Similarity;
-                        numerator += similarity.Similarity * allBookRatings.FirstOrDefault(rating => rating.AccountId == allAccounts[i].Id & rating.RecordId == books[k].Id).Value;
+                        var temp = allBookRatings.FirstOrDefault(rating => rating.AccountId == allAccounts[i].Id & rating.RecordId == books[k].Id);
+                        numerator += similarity.Similarity * (temp is null ? 0 : temp.Value);
                     }
 
                     var generatedRating = new Rating
@@ -296,6 +297,8 @@ namespace Business.Recommedation.Services
                         RecordId = books[j].Id,
                         Value = denominator == 0 ? 0 : (int)Math.Round(numerator / denominator)
                     };
+                    if (generatedRating.Value == 0)
+                        continue;
                     computedBookRatings.Add(generatedRating);
                     await _ratingRepository.AddAsync(generatedRating);
                 }
@@ -388,7 +391,8 @@ namespace Business.Recommedation.Services
                             continue;
                         var similarity = movieItems.FirstOrDefault(m => m.ItemOneId == Math.Min(movies[j].Id, movies[k].Id) & m.ItemTwoId == Math.Max(movies[j].Id, movies[k].Id)) ?? new ItemBasedFiltering { Similarity = 0 };
                         denominator += similarity.Similarity;
-                        numerator += similarity.Similarity * allMovieRatings.FirstOrDefault(rating => rating.AccountId == allAccounts[i].Id & rating.RecordId == movies[k].Id).Value;
+                        var temp = allMovieRatings.FirstOrDefault(rating => rating.AccountId == allAccounts[i].Id & rating.RecordId == movies[k].Id);
+                        numerator += similarity.Similarity * (temp is null ? 0 : temp.Value);
                     }
 
                     var generatedRating = new Rating
@@ -396,8 +400,10 @@ namespace Business.Recommedation.Services
                         AccountId = allAccounts[i].Id,
                         Type = RatingTypes.Movie,
                         RecordId = movies[j].Id,
-                        Value = (int)Math.Round(numerator / denominator)
+                        Value = denominator == 0 ? 0 : (int)Math.Round(numerator / denominator)
                     };
+                    if (generatedRating.Value == 0)
+                        continue;
                     computedMovieRatings.Add(generatedRating);
                     await _ratingRepository.AddAsync(generatedRating);
                 }
@@ -445,7 +451,7 @@ namespace Business.Recommedation.Services
 
             for (int i = 0; i < accounts.Count; i++)
             {
-                for (int j = 0; j < accounts.Count; j++)
+                for (int j = i + 1; j < accounts.Count; j++)
                 {
                     var bookRatings = await _ratingRepository.GetAllAsync(r => (r.AccountId == accounts[i].Id | r.AccountId == accounts[j].Id) & r.Type == RatingTypes.Book);
                     var books = bookRatings.Select(r => r.RecordId).Distinct().ToList();
@@ -454,8 +460,10 @@ namespace Business.Recommedation.Services
                         if (bookRatings.Where(r => r.RecordId == book).Count() < 2)
                             bookRatings.RemoveAll(r => r.RecordId == book);
                     }
-                    var avgOfUserOneBook = bookRatings.Where(r => r.AccountId == accounts[i].Id).Select(r => r.Value).Average();
-                    var avgOfUserTwoBook = bookRatings.Where(r => r.AccountId == accounts[j].Id).Select(r => r.Value).Average();
+                    var userOneBook = bookRatings.Where(r => r.AccountId == accounts[i].Id);
+                    var avgOfUserOneBook = userOneBook.Any() == false ? 0 : userOneBook.Select(r => r.Value).Average();
+                    var userTwoBook= bookRatings.Where(r => r.AccountId == accounts[j].Id);
+                    var avgOfUserTwoBook = userTwoBook.Any() == false ? 0 : userTwoBook.Select(r => r.Value).Average();
 
                     var userOneBookRatings = bookRatings.Where(r => r.AccountId == accounts[i].Id).Select(r => { r.Value -= avgOfUserOneBook; return r; }).ToList();
                     var userTwoBookRatings = bookRatings.Where(r => r.AccountId == accounts[j].Id).Select(r => { r.Value -= avgOfUserTwoBook; return r; }).ToList();
@@ -467,8 +475,10 @@ namespace Business.Recommedation.Services
                         if (movieRatings.Where(r => r.RecordId == movie).Count() < 2)
                             movieRatings.RemoveAll(r => r.RecordId == movie);
                     }
-                    var avgOfUserOneMovie = movieRatings.Where(r => r.AccountId == accounts[i].Id).Select(r => r.Value).Average();
-                    var avgOfUserTwoMovie = movieRatings.Where(r => r.AccountId == accounts[j].Id).Select(r => r.Value).Average();
+                    var userOneMovie = movieRatings.Where(r => r.AccountId == accounts[i].Id);
+                    var avgOfUserOneMovie = userOneMovie.Any() == false ? 0 : userOneMovie.Select(r => r.Value).Average();
+                    var userTwoMovie = movieRatings.Where(r => r.AccountId == accounts[j].Id);
+                    var avgOfUserTwoMovie = userTwoMovie.Any() == false ? 0 : userTwoMovie.Select(r => r.Value).Average();
 
                     var userOneMovieRatings = movieRatings.Where(r => r.AccountId == accounts[i].Id).Select(r => { r.Value -= avgOfUserOneMovie; return r; }).ToList();
                     var userTwoMovieRatings = movieRatings.Where(r => r.AccountId == accounts[j].Id).Select(r => { r.Value -= avgOfUserTwoMovie; return r; }).ToList();
@@ -480,7 +490,10 @@ namespace Business.Recommedation.Services
                         SimilarityForMovie = ComputeSimilarity(userOneMovieRatings, userTwoMovieRatings),
                         SimilarityForBook = ComputeSimilarity(userOneBookRatings, userTwoBookRatings)
                     };
-
+                    if (double.IsNaN(userItem.SimilarityForBook))
+                        userItem.SimilarityForBook = 0;
+                    if(double.IsNaN(userItem.SimilarityForMovie)) 
+                        userItem.SimilarityForMovie = 0;
                     userFiltering.Add(userItem);
                 }
             }

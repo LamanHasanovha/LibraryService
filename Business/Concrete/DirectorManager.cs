@@ -11,5 +11,10 @@ namespace Business.Concrete
         {
             //base.SetValidator(new DirectorValidator());
         }
+
+        public async Task<Director> GetRandomDirector()
+        {
+            return await Repository.GetRandomDirector();
+        }
     }
 }

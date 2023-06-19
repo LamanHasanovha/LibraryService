@@ -18,7 +18,7 @@ namespace WebAPI.Controllers
         [HttpGet("getmoviesbyaccount")]
         public async Task<IActionResult> GetMoviesByAccount(int accountId, int count)
         {
-            return Ok(await Service.GetBooksByAccount(accountId, count));
+            return Ok(await Service.GetMoviesByAccount(accountId, count));
         }
 
         [HttpGet("getmovies")]

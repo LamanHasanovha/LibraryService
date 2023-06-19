@@ -5,5 +5,6 @@ namespace DataAccess.Abstract
 {
     public interface IActorRepository : IExtendedRepository<Actor>
     {
+        Task<Actor> GetRandomActor();
     }
 }

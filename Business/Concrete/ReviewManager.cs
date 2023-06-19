@@ -14,7 +14,12 @@ namespace Business.Concrete
             //base.SetValidator(new ReviewValidator());
         }
 
-        public async Task<ReviewResponseModel> GetByType(int recordId, RatingTypes type)
+        public async Task<Review> GetByAccount(int id, int recordId, RatingTypes type)
+        {
+            return await Repository.GetAsync(r => r.AccountId == id & r.RecordId == recordId & r.Type == type);
+        }
+
+        public async Task<List<ReviewResponseModel>> GetByType(int recordId, RatingTypes type)
         {
             return await Repository.GetByType(recordId, type);
         }

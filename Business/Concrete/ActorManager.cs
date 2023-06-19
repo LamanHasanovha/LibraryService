@@ -11,5 +11,10 @@ namespace Business.Concrete
         {
             //base.SetValidator(new ActorValidator());
         }
+
+        public async Task<Actor> GetRandomActor()
+        {
+            return await Repository.GetRandomActor();
+        }
     }
 }

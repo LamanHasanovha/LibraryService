@@ -13,5 +13,11 @@ namespace WebAPI.Controllers
         public ActorsController(IActorService service) : base(service)
         {
         }
+
+        [HttpGet("getrandomactor")]
+        public async Task<IActionResult> GetRandomActor()
+        {
+            return Ok(await Service.GetRandomActor());
+        }
     }
 }

@@ -5,5 +5,6 @@ namespace DataAccess.Abstract
 {
     public interface IDirectorRepository : IExtendedRepository<Director>
     {
+        Task<Director> GetRandomDirector();
     }
 }

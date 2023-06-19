@@ -10,6 +10,7 @@ namespace DataAccess.Abstract
         Task<List<BookResponseModel>> GetBooks(Expression<Func<Book, bool>> predicate = null);
         Task<List<Book>> GetByIds(List<int> result);
         Task<string> GetMaxMinValue();
+        Task<List<BookResponseModel>> GetPopularBooks();
         Task<BookResponseModel> GetRandomBook();
         Task<List<Book>> GetSameGenre(int bookId, int count);
     }

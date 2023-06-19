@@ -22,6 +22,6 @@ namespace Entities.Concrete
         public double Value { get; set; }
         public RatingTypes Type { get; set; }
 
-        public Account Account { get; set; }
+        //public Account Account { get; set; }
     }
 }

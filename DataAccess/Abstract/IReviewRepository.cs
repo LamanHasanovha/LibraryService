@@ -7,6 +7,6 @@ namespace DataAccess.Abstract
 {
     public interface IReviewRepository : IExtendedRepository<Review>
     {
-        Task<ReviewResponseModel> GetByType(int recordId, RatingTypes type);
+        Task<List<ReviewResponseModel>> GetByType(int recordId, RatingTypes type);
     }
 }

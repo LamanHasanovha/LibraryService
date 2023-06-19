@@ -14,7 +14,7 @@ namespace WebAPI.Controllers
         {
         }
 
-        [HttpGet("getbybook")]
+        [HttpGet("getbyaccount")]
         public async Task<IActionResult> GetByAccount(int id)
         {
             return Ok(await Service.GetByAccount(id));

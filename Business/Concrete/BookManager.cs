@@ -34,6 +34,11 @@ namespace Business.Concrete
             return await Repository.GetMaxMinValue();
         }
 
+        public async Task<List<BookResponseModel>> GetPopularBooks()
+        {
+            return await Repository.GetPopularBooks();
+        }
+
         public async Task<BookResponseModel> GetRandomBook()
         {
             return await Repository.GetRandomBook();

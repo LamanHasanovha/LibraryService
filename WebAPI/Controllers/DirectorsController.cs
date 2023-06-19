@@ -13,5 +13,11 @@ namespace WebAPI.Controllers
         public DirectorsController(IDirectorService service) : base(service)
         {
         }
+
+        [HttpGet("getrandomdirector")]
+        public async Task<IActionResult> GetRandomDirector()
+        {
+            return Ok(await Service.GetRandomDirector());
+        }
     }
 }

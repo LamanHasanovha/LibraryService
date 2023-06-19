@@ -39,6 +39,11 @@ namespace Business.Concrete
             return await Repository.GetMovies();
         }
 
+        public async Task<List<MovieResponseModel>> GetPopularMovies()
+        {
+            return await Repository.GetPopularMovies();
+        }
+
         public async Task<MovieResponseModel> GetRandomMovie()
         {
             return await Repository.GetRandomMovie();

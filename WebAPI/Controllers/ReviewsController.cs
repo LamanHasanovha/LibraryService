@@ -20,5 +20,11 @@ namespace WebAPI.Controllers
         {
             return Ok(await Service.GetByType(recordId, (RatingTypes)type));
         }
+
+        [HttpGet("getbyaccount")]
+        public async Task<IActionResult> GetByAccount(int id, int recordId, int type)
+        {
+            return Ok(await Service.GetByAccount(id, recordId, (RatingTypes)type));
+        }
     }
 }

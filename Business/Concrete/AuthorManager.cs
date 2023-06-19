@@ -2,6 +2,7 @@
 using Core.Business.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Business.Concrete
 {
@@ -10,6 +11,11 @@ namespace Business.Concrete
         public AuthorManager(IAuthorRepository repository) : base(repository)
         {
             //base.SetValidator(new AuthorValidator());
+        }
+
+        public async Task<Author> GetRandomAuthor()
+        {
+            return await Repository.GetRandomAuthor();
         }
     }
 }

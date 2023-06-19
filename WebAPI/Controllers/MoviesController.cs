@@ -50,5 +50,11 @@ namespace WebAPI.Controllers
         {
             return Ok(await Service.GetMaxMinValue());
         }
+
+        [HttpGet("getpopularmovies")]
+        public async Task<IActionResult> GetPopularMovies()
+        {
+            return Ok(await Service.GetPopularMovies());
+        }
     }
 }
